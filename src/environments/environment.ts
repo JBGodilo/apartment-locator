@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  apiKey: 'YOUR_MAPTILER_API_KEY'
+  apiKey: 'A0E2523B25B805CBB6F8EC9D98AF56457EE7A255',
+  baseUrl: 'https://app.smartapartmentdata.com',
+  mapTilerStyleUrl: 'https://api.maptiler.com/maps/streets/style.json',
+  mapStyle: ' https://api.maptiler.com/maps/eef16200-c4cc-4285-9370-c71ca24bb42d/style.json?key=CH1cYDfxBV9ZBu1lHGqh',
+  mapTilerKey: 'SoL71Zyf7SmLrVYWC7fQ'
 };
 
 /*

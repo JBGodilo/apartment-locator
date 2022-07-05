@@ -1,42 +1,54 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { environment } from '@env/environment';
-
-import { Map, NavigationControl, Marker } from 'maplibre-gl';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { MapService, PropertyService } from '@core/services';
+import { IPropertyInfo } from '@models/property/property-info';
+import { IPropertyList } from '@models/property/property-list';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
-  map: Map | undefined;
-
+  
   @ViewChild('map')
   private mapContainer!: ElementRef<HTMLElement>;
+  properties: IPropertyInfo[];
+  allProperties: IPropertyList[];
 
-  constructor() { }
+  constructor(private mapService: MapService, private propertyService: PropertyService) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit() {
-    const initialState = { lng: 139.753, lat: 35.6844, zoom: 14 };
+    this.propertyService.getAllProperties()
+      .subscribe(allProperties => {
+        if (allProperties) {
+          this.allProperties = allProperties;
+          this.properties = allProperties[0].records;
+          this.mapService.loadMap(this.mapContainer.nativeElement, this.properties);
+        }
+      });
+  }
 
-    this.map = new Map({
-      container: this.mapContainer.nativeElement,
-      style: `https://api.maptiler.com/maps/streets/style.json?key=${environment.apiKey}`,
-      center: [initialState.lng, initialState.lat],
-      zoom: initialState.zoom
-    });
+  selectProperty(propertyId?: number) {
+    const selectedProperty = this.properties.find(property => property.propertyID == propertyId);
+    if (selectedProperty) {
+      this.mapService.loadSelectedLocationToMap(selectedProperty);
+    }
+  }
 
-    this.map.addControl(new NavigationControl());
-    new Marker({color: "#FF0000"})
-      .setLngLat([139.7525,35.6846])
-      .addTo(this.map);
+  selectAgent(accountId?: number) {
+    const selectedAgent = this.allProperties.find(property => property.agentInfo.accountID == accountId);
+    if (selectedAgent) {
+      this.properties = selectedAgent.records;
+      this.mapService.loadMap(this.mapContainer.nativeElement, this.properties);
+    }
   }
 
   ngOnDestroy() {
-    this.map?.remove();
+    this.mapService.clearMap();
   }
 
 }
