@@ -11,8 +11,7 @@ import { IPropertyList } from '@models/property/property-list';
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   
-  @ViewChild('map')
-  private mapContainer!: ElementRef<HTMLElement>;
+  @ViewChild('map') mapContainer!: ElementRef<HTMLElement>;
   properties: IPropertyInfo[];
   allProperties: IPropertyList[];
 

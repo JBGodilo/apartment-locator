@@ -1,0 +1,26 @@
+<div class="agent-title">Registered Agents</div>
+    <div class="list-container">
+      <mat-expansion-panel class="expansion-panel-container" *ngFor="let propertyList of allProperties; let isFirst = first" [expanded]="isFirst" (click)="selectAgent(propertyList?.agentInfo?.accountID)">
+        <mat-expansion-panel-header class="right-aligned-header">
+          <mat-panel-title>
+            {{propertyList?.agentInfo?.firstname | fullname: propertyList?.agentInfo?.lastname}}
+          </mat-panel-title>
+          <mat-panel-description sty>
+            {{propertyList?.agentInfo?.company}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="property-list-container">
+          <div class="property-header">PROPERTIES</div>
+          <div class="property-container" *ngFor="let property of propertyList?.records" (click)="selectProperty(propertyList?.agentInfo?.accountID, property?.propertyID);$event.stopPropagation()">
+            <div class="property-content">
+              <div class="property-content-header"><span class="favorite" *ngIf="property?.favorite"></span>{{property?.name}}</div>
+              <div class="property-content-subheader">{{property?.streetAddress}}</div>
+              <div class="property-content-section">{{property?.management}}</div>
+            </div>
+            <div class="property-image">
+              <img class="property-preview-img" [src]="property?.photo">
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </div>

@@ -1,12 +1,4 @@
 
-.expansion-panel-container > .mat-expansion-panel-content > .mat-expansion-panel-body {
-  padding: 0;
-}
-
-.mat-content > mat-panel-title, .mat-content > mat-panel-description {
-  flex: 0 0 auto;
-}
-
 .map-wrap {
   position: relative;
   width: 100%;
@@ -16,101 +8,6 @@
 
 .agents-list {
   width: 35%;
-}
-
-.agent-title {
-  padding: 10px;
-  color: white;
-  background-color: #1976d2;
-  font-size: 25px;
-  text-align: left;
-}
-
-.list-container {
-  padding: 10px 5px;
-}
-
-.property-header {
-  text-align: left;
-  color: #a7a1a1;
-  font-weight: 500;
-  letter-spacing: 1px;
-  font-size: 15px;
-}
-
-.property-list-container {
-  background-color: #fafafa;
-  flex: 1 1 auto;
-  overflow-y: auto;
-  max-height: 500px;
-}
-
-.property-container {
-  color: #6b6868;
-  cursor: pointer;
-  min-height: 100px;
-  transition: box-shadow .4s ease-in-out;
-  background: #fff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 1px 1px 1px #e0e0e0;
-  display: flex;
-}
-
-.property-container:hover {
-  border: 1px solid #1976d2;
-}
-
-.property-content {
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: auto;
-  font-size: 13px;
-  line-height: 23px;
-  padding: 10px 0;
-  margin-left: 15px;
-  text-align: left;
-}
-
-.property-content-header {
-  color: #000;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-}
-
-.property-content-subheader {
-  color: #909090;
-  font-size: 14px;
-  padding-top: 2px;
-}
-
-.property-content-section {
-  padding-top: 4px;
-  display: flex;
-  flex-wrap: wrap;
-  font-size: 13px;
-}
-
-.property-image {
-  flex-grow: 1;
-  flex-shrink: 0;
-  justify-content: flex-end;
-  align-items: flex-start;
-  flex-basis: 115px;
-  margin: 10px;
-  display: flex;
-}
-
-.property-preview-img {
-  display: inline-block;
-  max-width: 120px;
-  max-height: 120px;
-  object-fit: contain;
-}
-
-img {
-  vertical-align: middle;
-  border-style: none;
 }
 
 .map {
@@ -146,6 +43,7 @@ img {
   cursor: pointer;
 }
 
+
 .heart {
   width:30px;
   background:
@@ -158,6 +56,7 @@ img {
   display: inline-block;
   margin-top: 20%;
 }
+
 .heart::before {
   content:"";
   display:block;
