@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { MapService } from '@core/services';
 import { IPropertyInfo } from '@models/property/property-info';
 import { IPropertyList } from '@models/property/property-list';
@@ -9,10 +9,9 @@ import { IPropertyList } from '@models/property/property-list';
   styleUrls: ['./registered-agents.component.css']
 })
 export class RegisteredAgentsComponent implements OnInit, AfterViewInit {
-
-  @Input() mapContainer!: ElementRef<HTMLElement>;
   @Input() allProperties: IPropertyList[];
 
+  @ViewChild('map') mapContainer!: ElementRef<HTMLElement>;
   properties: IPropertyInfo[] ;
 
   constructor(private mapService: MapService) { }

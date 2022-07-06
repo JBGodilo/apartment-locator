@@ -26,7 +26,8 @@
     "paths": {
       "@env/*": ["src/environments/*"],
       "@core/*": ["src/app/core/*"],
-      "@models/*": ["src/app/shared/models/*"]
+      "@models/*": ["src/app/shared/models/*"],
+      "@shared/*": ["src/app/shared/*"]
     },
   },
   "angularCompilerOptions": {

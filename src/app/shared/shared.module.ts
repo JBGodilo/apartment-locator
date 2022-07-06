@@ -7,7 +7,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
   exports: [
     FullnamePipe, 
-    RegisteredAgentsComponent],
+    RegisteredAgentsComponent
+  ],
   declarations: [
     FullnamePipe, 
     RegisteredAgentsComponent],

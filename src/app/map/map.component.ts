@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, Vie
 import { MapService, PropertyService } from '@core/services';
 import { IPropertyInfo } from '@models/property/property-info';
 import { IPropertyList } from '@models/property/property-list';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-map',
@@ -15,10 +17,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   properties: IPropertyInfo[];
   allProperties: IPropertyList[];
 
-  constructor(private mapService: MapService, private propertyService: PropertyService) { }
+  propertyLists$: Observable<IPropertyList[]>;
 
-  ngOnInit(): void {
-  }
+  constructor(
+    private mapService: MapService, 
+    private propertyService: PropertyService
+  ) { }
+
+  ngOnInit(): void {}
 
   ngAfterViewInit() {
     this.propertyService.getAllProperties()
@@ -29,21 +35,6 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
           this.mapService.loadMap(this.mapContainer.nativeElement, this.properties);
         }
       });
-  }
-
-  selectProperty(propertyId?: number) {
-    const selectedProperty = this.properties.find(property => property.propertyID == propertyId);
-    if (selectedProperty) {
-      this.mapService.loadSelectedLocationToMap(selectedProperty);
-    }
-  }
-
-  selectAgent(accountId?: number) {
-    const selectedAgent = this.allProperties.find(property => property.agentInfo.accountID == accountId);
-    if (selectedAgent) {
-      this.properties = selectedAgent.records;
-      this.mapService.loadMap(this.mapContainer.nativeElement, this.properties);
-    }
   }
 
   ngOnDestroy() {
