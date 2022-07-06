@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, Vie
 import { MapService, PropertyService } from '@core/services';
 import { IPropertyInfo } from '@models/property/property-info';
 import { IPropertyList } from '@models/property/property-list';
+import { select, Store } from '@ngrx/store';
+import * as fromStore from '../store';
 
 @Component({
   selector: 'app-map',
@@ -15,12 +17,27 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   properties: IPropertyInfo[];
   allProperties: IPropertyList[];
 
+  data: IPropertyList[] = [];
+  public isLoading: boolean;
+
   constructor(
     private mapService: MapService, 
-    private propertyService: PropertyService
+    private propertyService: PropertyService,
+    private store: Store<fromStore.IPropertyListsState>
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store.dispatch(new fromStore.GetAllPropertyLists());
+    const propertyLists$ = this.store.pipe(select(fromStore.allPropertyLists))
+
+    propertyLists$.subscribe(res => {
+      if (res) {
+        this.data = res.data;
+        this.isLoading = res.isLoading;
+        console.log(this.data)
+      }
+    })
+  }
 
   ngAfterViewInit() {
     this.propertyService.getAllProperties()
