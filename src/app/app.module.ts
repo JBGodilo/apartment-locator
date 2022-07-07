@@ -8,13 +8,13 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { MaterialModule } from './material.module';
 import { StoreModule } from '@ngrx/store';
-import * as fromStore from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { PropertyListsEffects } from './store/effects/property-lists.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from './store';
 import { environment } from '../environments/environment';
 import { CommonModule } from '@angular/common';
+import * as fromStore from './store';
 
 
 @NgModule({

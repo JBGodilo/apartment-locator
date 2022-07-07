@@ -15,9 +15,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChildren('map') mapContainer!: QueryList<HTMLElement>;
 
   public loadedMapContainer: ElementRef<HTMLElement>;
-
-  propertyListsData: IPropertyList[] = [];
   public isLoading: boolean = true;
+  propertyListsData: IPropertyList[] = [];
 
   constructor(
     private mapService: MapService, 
