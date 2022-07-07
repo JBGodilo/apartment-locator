@@ -30,12 +30,11 @@ import * as fromStore from './store';
     CoreModule,
     MaterialModule,
     EffectsModule.forRoot([PropertyListsEffects]),
-    StoreDevtoolsModule.instrument({
-      maxAge: 15
-    }),
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreModule.forFeature('propertyLists', fromStore.propertyListsReducer),
-    !environment.production ? StoreDevtoolsModule.instrument() : []
+    !environment.production ? StoreDevtoolsModule.instrument({
+      maxAge: 15
+    }) : []
   ],
   providers: [],
   bootstrap: [AppComponent]

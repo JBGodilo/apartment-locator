@@ -10,8 +10,8 @@
           <mat-panel-title>
             {{propertyList?.agentInfo?.firstname | fullname: propertyList?.agentInfo?.lastname}}
           </mat-panel-title>
-          <mat-panel-description sty>
-            {{propertyList?.agentInfo?.company}}
+          <mat-panel-description sty matTooltip="Company" matTooltipPosition="above">
+            <span class="business-icon"><mat-icon> business</mat-icon></span> {{propertyList?.agentInfo?.company}}
           </mat-panel-description>
         </mat-expansion-panel-header>
         <div class="property-list-container">

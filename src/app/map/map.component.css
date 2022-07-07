@@ -6,6 +6,12 @@
   flex: 0 0 auto;
 }
 
+.right-aligned-header > .mat-content > .mat-expansion-panel-header-title {
+  color: #1976d2;
+  font-weight: 500;
+  font-size: 18px;
+}
+
 .map-wrap {
   position: relative;
   width: 100%;
