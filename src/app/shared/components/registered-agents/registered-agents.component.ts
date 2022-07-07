@@ -13,7 +13,8 @@ export class RegisteredAgentsComponent implements OnInit, AfterViewInit {
   @Input() mapContainer!: ElementRef<HTMLElement>;
   @Input() allProperties: IPropertyList[];
 
-  properties: IPropertyInfo[] ;
+  properties: IPropertyInfo[];
+  openPanel = 0;
 
   constructor(private mapService: MapService) { }
 
@@ -37,6 +38,10 @@ export class RegisteredAgentsComponent implements OnInit, AfterViewInit {
         this.mapService.loadSelectedLocationToMap(selectedProperty);
       }
     }
+  }
+
+  setOpenPanel(index: number) {
+    this.openPanel = index;
   }
 
 }

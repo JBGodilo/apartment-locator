@@ -1,6 +1,11 @@
 <div class="agent-title">Registered Agents</div>
     <div class="list-container">
-      <mat-expansion-panel class="expansion-panel-container" *ngFor="let propertyList of allProperties; let isFirst = first" [expanded]="isFirst" (click)="selectAgent(propertyList?.agentInfo?.accountID)">
+      <mat-expansion-panel class="expansion-panel-container" 
+        *ngFor="let propertyList of allProperties; let i = index" 
+        [expanded]="openPanel == i" 
+        (opened)="setOpenPanel(i)" 
+        (click)="selectAgent(propertyList?.agentInfo?.accountID)"
+      >
         <mat-expansion-panel-header class="right-aligned-header">
           <mat-panel-title>
             {{propertyList?.agentInfo?.firstname | fullname: propertyList?.agentInfo?.lastname}}

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FullnamePipe } from '@shared/pipes';
 import { RegisteredAgentsComponent } from '@shared/components';
-import { MatExpansionModule } from '@angular/material/expansion';
+import { MaterialModule } from '../material.module';
 
 @NgModule({
   exports: [
@@ -14,7 +14,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     RegisteredAgentsComponent],
   imports: [
     CommonModule,
-    MatExpansionModule,
+    MaterialModule,
   ]
 })
 export class SharedModule {}

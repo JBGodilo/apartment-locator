@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { MapService, PropertyService } from '@core/services';
-import { IPropertyInfo } from '@models/property/property-info';
+import { Component, OnInit, ElementRef, AfterViewInit, OnDestroy, ViewEncapsulation, ViewChildren, QueryList } from '@angular/core';
+import { MapService } from '@core/services';
 import { IPropertyList } from '@models/property/property-list';
 import { select, Store } from '@ngrx/store';
 import * as fromStore from '../store';
@@ -13,41 +12,38 @@ import * as fromStore from '../store';
 })
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   
-  @ViewChild('map') mapContainer!: ElementRef<HTMLElement>;
-  properties: IPropertyInfo[];
-  allProperties: IPropertyList[];
+  @ViewChildren('map') mapContainer!: QueryList<HTMLElement>;
 
-  data: IPropertyList[] = [];
-  public isLoading: boolean;
+  public loadedMapContainer: ElementRef<HTMLElement>;
+
+  propertyListsData: IPropertyList[] = [];
+  public isLoading: boolean = true;
 
   constructor(
     private mapService: MapService, 
-    private propertyService: PropertyService,
     private store: Store<fromStore.IPropertyListsState>
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  ngAfterViewInit() {
     this.store.dispatch(new fromStore.GetAllPropertyLists());
     const propertyLists$ = this.store.pipe(select(fromStore.allPropertyLists))
 
     propertyLists$.subscribe(res => {
       if (res) {
-        this.data = res.data;
+        this.propertyListsData = res.data;
         this.isLoading = res.isLoading;
-        console.log(this.data)
-      }
-    })
-  }
-
-  ngAfterViewInit() {
-    this.propertyService.getAllProperties()
-      .subscribe(allProperties => {
-        if (allProperties) {
-          this.allProperties = allProperties;
-          this.properties = allProperties[0].records;
-          this.mapService.loadMap(this.mapContainer.nativeElement, this.properties);
+        if (this.propertyListsData.length) {
+          this.mapContainer.changes.subscribe(
+            (map) => {
+              this.loadedMapContainer = map.first;
+              this.mapService.loadMap(this.loadedMapContainer.nativeElement, this.propertyListsData[0].records);
+            }
+          )
         }
-      });
+      }
+    });
   }
 
   ngOnDestroy() {
