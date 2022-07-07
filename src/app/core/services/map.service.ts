@@ -12,9 +12,7 @@ export class MapService {
   map: Map | undefined
   previousLocationData: IPreviousLocationData;
 
-  constructor() { 
-    this.getCurrentLocation();
-  }
+  constructor() { }
 
   public loadMap(mapContainerElement: string | HTMLElement, properties?: IPropertyInfo[], zoom?: number): void {
 
