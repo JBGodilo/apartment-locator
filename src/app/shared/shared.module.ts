@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FullnamePipe } from '@shared/pipes';
-import { RegisteredAgentsComponent } from '@shared/components';
+import * as components from '@shared/components';
 import { MaterialModule } from '../material.module';
 
 @NgModule({
   exports: [
     FullnamePipe, 
-    RegisteredAgentsComponent
+    ...components.components
   ],
   declarations: [
     FullnamePipe, 
-    RegisteredAgentsComponent],
+    ...components.components
+  ],
   imports: [
     CommonModule,
     MaterialModule,
