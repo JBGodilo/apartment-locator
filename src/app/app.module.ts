@@ -10,9 +10,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { StoreModule } from '@ngrx/store';
 import * as fromStore from './store';
 import { EffectsModule } from '@ngrx/effects';
-import { PropertyListsEffects } from './store/property-lists.effects';
+import { PropertyListsEffects } from './store/effects/property-lists.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { reducers, metaReducers } from './store/reducers';
+import { reducers, metaReducers } from './store';
 import { environment } from '../environments/environment';
 
 

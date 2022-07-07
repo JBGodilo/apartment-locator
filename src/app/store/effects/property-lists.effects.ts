@@ -4,7 +4,7 @@ import { IPropertyList } from "@models/property/property-list";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { Action } from "@ngrx/store";
 import { catchError, map, mergeMap, Observable, of } from "rxjs";
-import { GetAllPropertyListsFail, GetAllPropertyListsSuccess, PropertyListActionTypes } from "./property-lists.action";
+import { GetAllPropertyListsFail, GetAllPropertyListsSuccess, PropertyListActionTypes } from "../actions/property-lists.action";
 
 @Injectable()
 export class PropertyListsEffects {

@@ -1,5 +1,5 @@
 import { IPropertyList } from "@models/property/property-list";
-import { PropertyListActionTypes, PropertyListsAction } from "./property-lists.action";
+import { PropertyListActionTypes, PropertyListsAction } from "../actions/property-lists.action";
 
 export interface IPropertyListsState {
   data: IPropertyList[];

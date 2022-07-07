@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { IPropertyListsState } from "./property-lists.reducer";
+import { IPropertyListsState } from "../reducers/property-lists.reducer";
 
 const getPropertyListsState = createFeatureSelector<IPropertyListsState>('propertyLists');
 
