@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { PropertyListsEffects } from '../store/effects/property-lists.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { reducers, metaReducers } from '../store';
-import { environment } from '../../environments/environment';
+import { environment } from '@env/environment';
 import * as fromStore from '../store';
 
 @NgModule({
